@@ -5,3 +5,8 @@
 *.scm~
 *.scm#*
 .#*.scm
+
+# Adding coverage for racket
+*.rkt~
+*.rkt#*
+.#*.rkt
