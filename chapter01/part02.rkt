@@ -59,5 +59,12 @@ two variables, and these alone could be used to track and execute the process.
 |#
 
 #|
-
+(define (f n)
+  (define (f-iter sum count)
+    (if (= count 0)
+        sum
+        (f-iter (+ sum (* (- count 1) (f (- n (- count 1))))) (- count 1))))
+  (if (< n 3)
+      n
+      (f-iter 0 4)))
 |#
