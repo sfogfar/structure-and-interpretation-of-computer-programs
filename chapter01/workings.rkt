@@ -32,8 +32,8 @@
   (define (f-iter sum count)
     (if (= count 0)
         sum
-        (f-iter (+ sum (* (- count 1) (f (- n (- count 1))))) (- count 1))))
+        (f-iter (+ sum (* count (f (- n count)))) (- count 1))))
   (if (< n 3)
       n
-      (f-iter 0 4)))
+      (f-iter 0 3)))
 
