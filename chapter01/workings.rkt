@@ -28,12 +28,20 @@
                  (* 3 (f (- n 3)))))))
 |#
 
+
 (define (f n)
-  (define (f-iter sum count)
-    (if (= count 0)
-        sum
-        (f-iter (+ sum (* count (f (- n count)))) (- count 1))))
+  (define (f-iter a b c count)
+  (if (= count (- n 3))
+      (+ a
+         (* 2 b)
+         (* 3 c))
+      (f-iter (+ a (* 2 b) (* 3 c)) a b (+ count 1))))
   (if (< n 3)
       n
-      (f-iter 0 3)))
+      (f-iter 2 1 0 0)))
 
+(define (pascal row column)
+  (if (or (= row column) (= column 1))
+       1
+       (+ (pascal (- row 1) (- column 1))
+          (pascal (- row 1) column))))

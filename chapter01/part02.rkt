@@ -70,3 +70,12 @@ two variables, and these alone could be used to track and execute the process.
       n
       (f-iter 2 1 0 0)))
 |#
+
+;; ex1.12
+#|
+(define (pascal row column)
+  (if (or (= row column) (= column 1))
+       1
+       (+ (pascal (- row 1) (- column 1))
+          (pascal (- row 1) column))))
+|#
