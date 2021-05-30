@@ -1,4 +1,8 @@
 #lang sicp
+;; TODO
+;; Finish 1.10
+;; Attempt 1.13
+
 ;; ex1.9
 #|
 The first procedure generates a linearly recursive process.
