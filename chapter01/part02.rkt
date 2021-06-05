@@ -2,6 +2,7 @@
 ;; TODO
 ;; Finish 1.10
 ;; Attempt 1.13
+;; Draw out 1.14 tree
 
 ;; ex1.9
 #|
@@ -82,4 +83,48 @@ two variables, and these alone could be used to track and execute the process.
        1
        (+ (pascal (- row 1) (- column 1))
           (pascal (- row 1) column))))
+|#
+
+;; ex1.15
+#|
+Procedure p will be applied 5 times.
+The order of growth will be O(log(a))
+|#
+
+;; ex1.16
+#|
+(define (fast-expt b n)
+  (define (expt-iter a b n)
+    (cond ((= n 0) a)
+          ((even? n) (expt-iter a (square b) (/ n 2)))
+          (else (expt-iter (* a b) b (- n 1)))))
+  (define (square x) (* x x))
+  (define (even? x) (= (remainder x 2) 0))
+  (expt-iter 1 b n))
+|#
+
+;; ex1.17
+#|
+(define (* a b)
+  (define (halve x) (/ x 2))
+  (define (double x) (+ x x))
+  (define (even? x) (= (remainder x 2) 0))
+  (cond ((= b 0) 0)
+        ((even? b) (* (double a) (halve b)))
+        (else (+ a (* a (- b 1))))))
+|#
+
+;; ex1.18
+#|
+(define (* a b)
+  (define (halve x) (/ x 2))
+  (define (double x) (+ x x))
+  (define (even? x) (= (remainder x 2) 0))
+
+  (define (*-iter i a b)
+    (cond ((= b 0) 0)
+          ((= b 1) (+ i a))
+          ((even? b) (*-iter i (double a) (halve b)))
+          (else (*-iter (+ i a) a (- b 1)))))
+  (*-iter 0 a b))
 |#

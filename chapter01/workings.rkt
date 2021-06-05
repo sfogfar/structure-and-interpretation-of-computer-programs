@@ -45,3 +45,47 @@
        1
        (+ (pascal (- row 1) (- column 1))
           (pascal (- row 1) column))))
+
+(define (count-change amount) (cc amount 5))
+(define (cc amount kinds-of-coins)
+  (cond ((= amount 0) 1)
+        ((or (< amount 0) (= kinds-of-coins 0)) 0)
+        (else (+ (cc amount
+                     (- kinds-of-coins 1))
+                 (cc (- amount
+                        (first-denomination kinds-of-coins))
+                     kinds-of-coins)))))
+(define (first-denomination kinds-of-coins)
+  (cond ((= kinds-of-coins 1) 1)
+        ((= kinds-of-coins 2) 5)
+        ((= kinds-of-coins 3) 10)
+        ((= kinds-of-coins 4) 25)
+        ((= kinds-of-coins 5) 50)))
+
+(define (square x) (* x x))
+
+(define (even? x) (= (remainder x 2) 0))
+
+(define (fast-expt-rec b n)
+  (cond ((= n 0) 1)
+        ((even? n) (square (fast-expt-rec b (/ n 2))))
+        (else (* b (fast-expt-rec b (- n 1))))))
+
+(define (fast-expt b n)
+  (define (expt-iter a b n)
+    (cond ((= n 0) a)
+          ((even? n) (expt-iter a (square b) (/ n 2)))
+          (else (expt-iter (* a b) b (- n 1)))))
+  (define (square x) (* x x))
+  (define (even? x) (= (remainder x 2) 0))
+  (expt-iter 1 b n))
+
+#|
+(define (* a b)
+  (define (halve x) (/ x 2))
+  (define (double x) (+ x x))
+  (define (multiply-iter a b)
+    (cond ((= b 1) a)
+          ((even? b) (multiply-iter (double a) (- b 1)))
+          (else
+|#
