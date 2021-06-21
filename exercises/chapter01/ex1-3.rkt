@@ -1,3 +1,4 @@
+#lang sicp
 ;; ex1.3
 
 (define (sum-of-two-largest-squares a b c)
