@@ -10,3 +10,7 @@
 *.rkt~
 *.rkt#*
 .#*.rkt
+
+# Local system
+*.sw?
+.DS_Store
