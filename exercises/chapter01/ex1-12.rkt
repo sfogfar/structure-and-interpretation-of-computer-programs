@@ -1,3 +1,4 @@
+#lang sicp
 ;; ex1.12
 
 (define (pascal row column)

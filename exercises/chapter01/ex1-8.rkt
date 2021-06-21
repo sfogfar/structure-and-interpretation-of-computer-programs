@@ -1,3 +1,4 @@
+#lang sicp
 ;; ex1.8
 
 (define (cubert x)

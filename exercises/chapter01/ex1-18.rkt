@@ -1,3 +1,4 @@
+#lang sicp
 ;; ex1.18
 
 (define (* a b)
