@@ -13,12 +13,14 @@
         ((= y 1) 2)
         (else (A (- x 1) (A x (- y 1))))))
 
+#|
 (define (fib n)
   (define (fib-iter a b count)
     (if (= count 0)
         b
         (fib-iter (+ a b) a (- count 1))))
   (fib-iter 1 0 n))
+|#
 
 #|
 (define (f n)
@@ -84,8 +86,37 @@
 (define (* a b)
   (define (halve x) (/ x 2))
   (define (double x) (+ x x))
-  (define (multiply-iter a b)
-    (cond ((= b 1) a)
-          ((even? b) (multiply-iter (double a) (- b 1)))
-          (else
+  (define (even? x) (= (remainder x 2) 0))
+  (cond ((= b 0) 0)
+        ((even? b) (* (double a) (halve b)))
+        (else (+ a (* a (- b 1))))))
 |#
+
+(define (* a b)
+  (define (halve x) (/ x 2))
+  (define (double x) (+ x x))
+  (define (even? x) (= (remainder x 2) 0))
+
+  (define (*-iter i a b)
+    (cond ((= b 0) 0)
+          ((= b 1) (+ i a))
+          ((even? b) (*-iter i (double a) (halve b)))
+          (else (*-iter (+ i a) a (- b 1)))))
+  (*-iter 0 a b))
+
+(define (fib n)
+  (fib-iter 1 0 0 1 n))
+(define (fib-iter a b p q count)
+  (define (even? x) (= (remainder x 2) 0))
+  (cond ((= count 0) b)
+        ((even? count)
+         (fib-iter a
+                   b
+                   (+ (* p p) (* q q))
+                   (+ (* p q) (* q (+ p q)))
+                   (/ count 2)))
+        (else (fib-iter (+ (* b q) (* a q) (* a p))
+                        (+ (* b p) (* a q))
+                        p
+                        q
+                        (- count 1)))))
