@@ -1,2 +1,2 @@
-# like-a-violin
+# Structure and Interpretation of Computer Programs
 Exercises from SICP.
